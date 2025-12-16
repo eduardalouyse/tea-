@@ -1,0 +1,51 @@
+@startuml
+title Diagrama de Banco de Dados – Plataforma TEA+
+
+entity Usuario {
+  + id_usuario : int <<PK>>
+  --
+  nome : varchar
+  email : varchar
+  senha : varchar
+  tipo_usuario : varchar
+}
+
+entity ConteudoEducativo {
+  + id_conteudo : int <<PK>>
+  --
+  titulo : varchar
+  descricao : text
+  categoria : varchar
+  faixa_etaria : varchar
+}
+
+entity ProfissionalEspecializado {
+  + id_profissional : int <<PK>>
+  --
+  nome : varchar
+  formacao : varchar
+  especializacao : varchar
+  descricao_atuacao : text
+}
+
+entity AcessoConteudo {
+  + id_acesso : int <<PK>>
+  --
+  id_usuario : int <<FK>>
+  id_conteudo : int <<FK>>
+}
+
+entity ConsultaProfissional {
+  + id_consulta : int <<PK>>
+  --
+  id_usuario : int <<FK>>
+  id_profissional : int <<FK>>
+}
+
+Usuario ||--o{ AcessoConteudo : realiza
+ConteudoEducativo ||--o{ AcessoConteudo : possui
+
+Usuario ||--o{ ConsultaProfissional : realiza
+ProfissionalEspecializado ||--o{ ConsultaProfissional : possui
+
+@enduml
