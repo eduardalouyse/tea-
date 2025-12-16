@@ -1,0 +1,16 @@
+@startuml
+title Diagrama de Sequência – Fluxo de Login
+
+actor Usuario
+participant "Interface Web" as UI
+participant "Servidor WordPress" as WP
+database "Banco de Dados" as BD
+
+Usuario -> UI : Inserir login e senha
+UI -> WP : Enviar credenciais
+WP -> BD : Validar usuário
+BD --> WP : Retorno (usuário encontrado)
+WP --> UI : Login bem-sucedido
+UI --> Usuario : Acesso à área restrita
+
+@enduml
